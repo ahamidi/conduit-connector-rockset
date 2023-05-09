@@ -4,7 +4,7 @@
 Records will be written to the configured Rockset collection. As the entire OpenCDC record will be written, the nested
 payload will be base64 encoded.
 
-Here is an example query to pull out only the payload from the record:
+Here is an example query to pull out only the payload from the record and decode it:
 ```sql
 SELECT
     CAST(FROM_BASE64(test.payload.after) as string)
