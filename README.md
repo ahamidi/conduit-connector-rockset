@@ -1,36 +1,48 @@
-# Conduit Connector for <resource>
-[Conduit](https://conduit.io) for <resource>.
+# Conduit Connector for Rockset
+[Conduit](https://conduit.io) for [Rockset](https://rockset.com).
+
+Records will be written to the configured Rockset collection. As the entire OpenCDC record will be written, the nested
+payload will be base64 encoded.
+
+Here is an example query to pull out only the payload from the record:
+```sql
+SELECT
+    CAST(FROM_BASE64(test.payload.after) as string)
+FROM
+    commons.test
+LIMIT
+    10
+```
+**Note:** The above query assumes the collection is named `commons` and the collection is named `test`.
 
 ## How to build?
 Run `make build` to build the connector.
 
 ## Testing
-Run `make test` to run all the unit tests. Run `make test-integration` to run the integration tests.
-
-The Docker compose file at `test/docker-compose.yml` can be used to run the required resource locally.
+todo
 
 ## Source
-A source connector pulls data from an external resource and pushes it to downstream resources via Conduit.
+todo
 
 ### Configuration
-
-| name                  | description                           | required | default value |
-|-----------------------|---------------------------------------|----------|---------------|
-| `source_config_param` | Description of `source_config_param`. | true     | 1000          |
+todo
 
 ## Destination
-A destination connector pushes data from upstream resources to an external resource via Conduit.
+A destination connector pushes data from upstream resources to a Rockset Collection via Conduit.
 
 ### Configuration
 
-| name                       | description                                | required | default value |
-|----------------------------|--------------------------------------------|----------|---------------|
-| `destination_config_param` | Description of `destination_config_param`. | true     | 1000          |
+| name         | description                            | required | default value |
+|--------------|----------------------------------------|----------|---------------|
+| `region`     | Rockset region.                        | no       | us-west-2     |
+| `collection` | Rockset collection.                    | true     |               |
+| `workspace`  | Rockset Workspace.                     | true     |               |
+| `api_key`    | API Key for accessing the Rockset API. | true     |               |
 
 ## Known Issues & Limitations
-* Known issue A
-* Limitation A
+* Complete OpenCDC record is written to Rockset. This includes the nested payload which is base64 encoded.
 
 ## Planned work
-- [ ] Item A
-- [ ] Item B
+- [ ] Add Source Connector
+- [ ] Tests
+- [ ] Handle rate limit responses from Rockset API
