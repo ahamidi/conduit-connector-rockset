@@ -1,0 +1,20 @@
+---
+version: 2.0
+pipelines:
+  - id: testpipeline
+    status: running
+    description: Test pipeline that reads from a file and writes to Rockset
+    connectors:
+      - id: test.in
+        type: source
+        plugin: builtin:file
+        settings:
+          path: ./test.in
+
+      - id: rockset.out
+        type: destination
+        plugin: standalone:rockset@9b54892-dirty
+        settings:
+          collection: test
+          workspace: commons
+          api_key: ${ROCKSET_API_KEY}

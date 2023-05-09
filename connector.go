@@ -1,4 +1,4 @@
-package connectorname
+package rockset
 
 import sdk "github.com/conduitio/conduit-connector-sdk"
 

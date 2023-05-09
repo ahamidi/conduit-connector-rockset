@@ -3,9 +3,9 @@ package main
 import (
 	sdk "github.com/conduitio/conduit-connector-sdk"
 
-	connectorname "github.com/conduitio/conduit-connector-connectorname"
+	rockset "github.com/ahmeroxa/conduit-connector-rockset"
 )
 
 func main() {
-	sdk.Serve(connectorname.Connector)
+	sdk.Serve(rockset.Connector)
 }
