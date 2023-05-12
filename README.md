@@ -5,15 +5,12 @@ Records will be written to the configured Rockset collection. As the entire Open
 payload will be base64 encoded.
 
 Here is an example query to pull out only the payload from the record and decode it:
+You can use the following SQL as the ingest transformation to pull out only the payload (after decoding it):
 ```sql
 SELECT
-    CAST(FROM_BASE64(test.payload.after) as string)
-FROM
-    commons.test
-LIMIT
-    10
+    TRY_CAST(FROM_BASE64(_input.payload.after) as string) AS payload
+FROM _input
 ```
-**Note:** The above query assumes the collection is named `commons` and the collection is named `test`.
 
 ## How to build?
 Run `make build` to build the connector.
