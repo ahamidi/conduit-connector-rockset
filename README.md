@@ -37,7 +37,7 @@ A destination connector pushes data from upstream resources to a Rockset Collect
 | `api_key`    | API Key for accessing the Rockset API. | true     |               |
 
 ## Known Issues & Limitations
-* Complete OpenCDC record is written to Rockset. This includes the nested payload which is base64 encoded.
+* Does not honor rate limiting response from Rockset API
 
 ## Planned work
 - [ ] Add Source Connector
