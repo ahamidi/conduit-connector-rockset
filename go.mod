@@ -3,7 +3,7 @@ module github.com/ahmeroxa/conduit-connector-rockset
 go 1.20
 
 require (
-	github.com/conduitio/conduit-connector-sdk v0.6.0
+	github.com/conduitio/conduit-connector-sdk v0.7.0
 	github.com/rockset/rockset-go-client v0.18.0
 )
 
